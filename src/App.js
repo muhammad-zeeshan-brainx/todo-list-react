@@ -1,18 +1,27 @@
 import Todo from './componenets/Todo';
 import TodoForm from './componenets/TodoForm';
+import { useState } from 'react';
 
 function App() {
+  const [todosList, setTodosList] = useState([]);
   const todoFormSubmitHandler = (formData) => {
-    console.log(formData);
+    const newTodo = {
+      id: Math.random(),
+      ...formData,
+    };
+    setTodosList((previousState) => {
+      return [newTodo, ...previousState];
+    });
   };
+
   return (
     <div>
       <h1>Todo List</h1>
       <TodoForm onSave={todoFormSubmitHandler} />
-      <Todo text="Item 1" />
-      <Todo text="Item 2" />
-      <Todo text="Item 3" />
-      <Todo text="Item 4" />
+
+      {todosList.length > 0
+        ? todosList.map((item) => <Todo itemName={item.name} key={item.id} />)
+        : null}
     </div>
   );
 }
