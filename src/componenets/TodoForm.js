@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const TodoForm = () => {
+const TodoForm = (props) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
@@ -11,15 +11,27 @@ const TodoForm = () => {
     setDescription(e.target.value);
   };
 
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    props.onSave({
+      name,
+      description,
+    });
+    setName('');
+    setDescription('');
+  };
+
   return (
     <div>
       <h2>This is form</h2>
-      <form>
+      <form onSubmit={formSubmitHandler}>
         <label>Name</label>
-        <input type="text" id="name" onChange={nameInputHandler} /> <br />
+        <input type="text" value={name} id="name" onChange={nameInputHandler} />
+        <br />
         <label>Description</label>
         <input
           type="text"
+          value={description}
           id="description"
           onChange={descriptionInputHandler}
         />
