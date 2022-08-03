@@ -1,9 +1,11 @@
-import Todo from "./componenets/Todo";
+import Todo from './componenets/Todo';
+import TodoForm from './componenets/TodoForm';
 
 function App() {
   return (
     <div>
-      <h1>Todos</h1>
+      <h1>Todo List</h1>
+      <TodoForm />
       <Todo text="Item 1" />
       <Todo text="Item 2" />
       <Todo text="Item 3" />
