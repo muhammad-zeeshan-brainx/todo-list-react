@@ -1,14 +1,23 @@
 import TodoForm from './TodoForm';
 
 function Modal(props) {
-  console.log(props.itemId);
   function cancelHandler() {
     props.onCancel();
   }
   function confirmHandler() {
-    props.todosList.splice(props.itemId, 1);
+    const url = `/tasks/${props.itemId}`;
+    fetch(url, { method: 'DELETE' })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('inside delete');
+        props.isTodoListUpdated
+          ? props.setIsTodoListUpdated(false)
+          : props.setIsTodoListUpdated(true);
+      });
 
-    props.setTodosList([...props.todosList]);
+    // props.todosList.splice(props.itemId, 1);
+
+    // props.setTodosList([...props.todosList]);
     props.onConfirm();
   }
 

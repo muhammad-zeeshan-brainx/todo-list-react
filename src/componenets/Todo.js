@@ -5,7 +5,7 @@ import Backdrop from './Backdrop';
 function Todo(props) {
   const [modal, setmodal] = useState({ isOpen: false, type: null });
 
-  function deleteHandler(itemId) {
+  function deleteHandler() {
     setmodal({ isOpen: true, type: 'delete' });
   }
 
@@ -24,7 +24,7 @@ function Todo(props) {
         <button
           className="btn"
           onClick={() => {
-            deleteHandler(props.todoItem._id);
+            deleteHandler();
           }}
         >
           Delete
@@ -32,7 +32,7 @@ function Todo(props) {
         <button
           className="btn"
           onClick={() => {
-            editHandler(props.todoItem._id);
+            editHandler();
           }}
         >
           Edit
