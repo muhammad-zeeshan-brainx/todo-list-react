@@ -1,6 +1,8 @@
-import Todo from './componenets/Todo';
-import TodoForm from './componenets/TodoForm';
 import { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import AllTodos from './pages/AllTodos';
+import TodoDetail from './pages/TodoDetail';
 
 function App() {
   const [todosList, setTodosList] = useState([]);
@@ -38,19 +40,25 @@ function App() {
 
   return (
     <div>
-      <h1>Todo List</h1>
-      <TodoForm onSave={todoFormSubmitHandler} />
+      <Routes>
+        <Route path="todos">
+          <Route
+            path=""
+            element={
+              <AllTodos
+                todoFormSubmitHandler={todoFormSubmitHandler}
+                todosList={todosList}
+                isTodoListUpdated={isTodoListUpdated}
+                setIsTodoListUpdated={setIsTodoListUpdated}
+              />
+            }
+          />
 
-      {todosList.length > 0
-        ? todosList.map((item) => (
-            <Todo
-              todoItem={item}
-              key={item.id}
-              setIsTodoListUpdated={setIsTodoListUpdated}
-              isTodoListUpdated={isTodoListUpdated}
-            />
-          ))
-        : null}
+          <Route path=":id">
+            <Route path="" element={<TodoDetail />} />
+          </Route>
+        </Route>
+      </Routes>
     </div>
   );
 }
