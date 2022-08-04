@@ -3,26 +3,52 @@ import Modal from './Modal';
 import Backdrop from './Backdrop';
 
 function Todo(props) {
-  const [isModalOpen, setIsmodalOpen] = useState(false);
-  function deleteHandler() {
-    setIsmodalOpen(true);
+  const [modal, setmodal] = useState({ isOpen: false, type: null });
+
+  function deleteHandler(itemId) {
+    setmodal({ isOpen: true, type: 'delete' });
   }
 
   function closeModalHandler() {
-    setIsmodalOpen(false);
+    setmodal({ isOpen: false, type: null });
   }
+
+  function editHandler() {
+    setmodal({ isOpen: true, type: 'edit' });
+  }
+
   return (
     <div className="card">
-      <h2>{props.itemName}</h2>
+      <h2>{props.todoItem.name}</h2>
       <div className="card-btn">
-        <button className="btn" onClick={deleteHandler}>
+        <button
+          className="btn"
+          onClick={() => {
+            deleteHandler(props.todoItem.id);
+          }}
+        >
           Delete
         </button>
+        <button
+          className="btn"
+          onClick={() => {
+            editHandler(props.todoItem.id);
+          }}
+        >
+          Edit
+        </button>
       </div>
-      {isModalOpen ? (
-        <Modal onCancel={closeModalHandler} onConfirm={closeModalHandler} />
+      {modal.isOpen ? (
+        <Modal
+          onCancel={closeModalHandler}
+          onConfirm={closeModalHandler}
+          modalType={modal.type}
+          itemId={props.todoItem.id}
+          todosList={props.todosList}
+          setTodosList={props.setTodosList}
+        />
       ) : null}
-      {isModalOpen ? <Backdrop onCancel={closeModalHandler} /> : null}
+      {modal.isOpen ? <Backdrop onCancel={closeModalHandler} /> : null}
     </div>
   );
 }
