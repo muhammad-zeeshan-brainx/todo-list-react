@@ -9,15 +9,11 @@ function Modal(props) {
     fetch(url, { method: 'DELETE' })
       .then((response) => response.json())
       .then((data) => {
-        console.log('inside delete');
         props.isTodoListUpdated
           ? props.setIsTodoListUpdated(false)
           : props.setIsTodoListUpdated(true);
       });
 
-    // props.todosList.splice(props.itemId, 1);
-
-    // props.setTodosList([...props.todosList]);
     props.onConfirm();
   }
 
@@ -32,23 +28,11 @@ function Modal(props) {
     fetch(url, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log('inside update');
-        console.log(props.isTodoListUpdated);
         props.isTodoListUpdated
           ? props.setIsTodoListUpdated(false)
           : props.setIsTodoListUpdated(true);
       });
 
-    // console.log(props._id);
-    // console.log(props.itemId);
-    // const updatedTodo = {
-    //   id: props.itemId,
-    //   ...formData,
-    // };
-    // props.todosList.splice(props.itemId, 1);
-    // props.todosList[props.itemId] = updatedTodo;
-    // console.log(props.todosList);
-    // props.setTodosList([...props.todosList]);
     props.onCancel();
   };
 

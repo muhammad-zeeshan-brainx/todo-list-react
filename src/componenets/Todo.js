@@ -44,8 +44,6 @@ function Todo(props) {
           onConfirm={closeModalHandler}
           modalType={modal.type}
           itemId={props.todoItem.id}
-          todosList={props.todosList}
-          setTodosList={props.setTodosList}
           setIsTodoListUpdated={props.setIsTodoListUpdated}
           isTodoListUpdated={props.isTodoListUpdated}
         />

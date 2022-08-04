@@ -2,13 +2,6 @@ import Todo from './componenets/Todo';
 import TodoForm from './componenets/TodoForm';
 import { useState, useEffect } from 'react';
 
-// const todos = [
-//   { id: 0, name: 'item1', description: 'item1 description' },
-//   { id: 1, name: 'item2', description: 'item2 description' },
-//   { id: 2, name: 'item3', description: 'item3 description' },
-//   { id: 3, name: 'item4', description: 'item4 description' },
-// ];
-
 function App() {
   const [todosList, setTodosList] = useState([]);
   const [isTodoListUpdated, setIsTodoListUpdated] = useState(false);
@@ -41,10 +34,6 @@ function App() {
           ? setIsTodoListUpdated(false)
           : setIsTodoListUpdated(true);
       });
-
-    // setTodosList((previousState) => {
-    //   return [newTodo, ...previousState];
-    // });
   };
 
   return (
@@ -57,8 +46,6 @@ function App() {
             <Todo
               todoItem={item}
               key={item.id}
-              todosList={todosList}
-              setTodosList={setTodosList}
               setIsTodoListUpdated={setIsTodoListUpdated}
               isTodoListUpdated={isTodoListUpdated}
             />
