@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [todosList, setTodosList] = useState([]);
+  const [isTodoListUpdated, setIsTodoListUpdated] = useState(false);
 
   useEffect(() => {
     fetch('/tasks')
@@ -18,13 +19,26 @@ function App() {
       .then((data) => {
         setTodosList([...data.tasks]);
       });
-  }, []);
+  }, [isTodoListUpdated]);
 
   const todoFormSubmitHandler = (formData) => {
     const newTodo = {
       id: todosList.length,
       ...formData,
     };
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newTodo),
+    };
+
+    fetch('/tasks', requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('success');
+        setIsTodoListUpdated(true);
+      });
+
     // setTodosList((previousState) => {
     //   return [newTodo, ...previousState];
     // });
