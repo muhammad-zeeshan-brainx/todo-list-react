@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Modal from './Modal';
 import Backdrop from './Backdrop';
+import { Link } from 'react-router-dom';
 
 function Todo(props) {
   const [modal, setmodal] = useState({ isOpen: false, type: null });
@@ -19,8 +20,9 @@ function Todo(props) {
 
   return (
     <div className="card">
-      <h2>{props.todoItem.name}</h2>
-      <div className="card-btn">
+      <li key={props.todoItem.id}>
+        <Link to={`${props.todoItem.id}`}>{props.todoItem.name}</Link>
+
         <button
           className="btn"
           onClick={() => {
@@ -37,7 +39,8 @@ function Todo(props) {
         >
           Edit
         </button>
-      </div>
+      </li>
+
       {modal.isOpen ? (
         <Modal
           onCancel={closeModalHandler}
