@@ -36,7 +36,10 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log('success');
-        setIsTodoListUpdated(true);
+
+        isTodoListUpdated
+          ? setIsTodoListUpdated(false)
+          : setIsTodoListUpdated(true);
       });
 
     // setTodosList((previousState) => {
@@ -53,9 +56,11 @@ function App() {
         ? todosList.map((item) => (
             <Todo
               todoItem={item}
-              key={item._id}
+              key={item.id}
               todosList={todosList}
               setTodosList={setTodosList}
+              setIsTodoListUpdated={setIsTodoListUpdated}
+              isTodoListUpdated={isTodoListUpdated}
             />
           ))
         : null}

@@ -24,7 +24,7 @@ function Todo(props) {
         <button
           className="btn"
           onClick={() => {
-            deleteHandler(props.todoItem.id);
+            deleteHandler(props.todoItem._id);
           }}
         >
           Delete
@@ -32,7 +32,7 @@ function Todo(props) {
         <button
           className="btn"
           onClick={() => {
-            editHandler(props.todoItem.id);
+            editHandler(props.todoItem._id);
           }}
         >
           Edit
@@ -46,6 +46,8 @@ function Todo(props) {
           itemId={props.todoItem.id}
           todosList={props.todosList}
           setTodosList={props.setTodosList}
+          setIsTodoListUpdated={props.setIsTodoListUpdated}
+          isTodoListUpdated={props.isTodoListUpdated}
         />
       ) : null}
       {modal.isOpen ? <Backdrop onCancel={closeModalHandler} /> : null}

@@ -13,16 +13,33 @@ function Modal(props) {
   }
 
   const todoFormUpdateHandler = (formData) => {
-    console.log(formData);
-    console.log(props.itemId);
-    const updatedTodo = {
-      id: props.itemId,
-      ...formData,
+    const requestOptions = {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
     };
-    props.todosList.splice(props.itemId, 1);
-    props.todosList[props.itemId] = updatedTodo;
-    console.log(props.todosList);
-    props.setTodosList([...props.todosList]);
+    const url = `/tasks/${props.itemId}`;
+
+    fetch(url, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('inside update');
+        console.log(props.isTodoListUpdated);
+        props.isTodoListUpdated
+          ? props.setIsTodoListUpdated(false)
+          : props.setIsTodoListUpdated(true);
+      });
+
+    // console.log(props._id);
+    // console.log(props.itemId);
+    // const updatedTodo = {
+    //   id: props.itemId,
+    //   ...formData,
+    // };
+    // props.todosList.splice(props.itemId, 1);
+    // props.todosList[props.itemId] = updatedTodo;
+    // console.log(props.todosList);
+    // props.setTodosList([...props.todosList]);
     props.onCancel();
   };
 
