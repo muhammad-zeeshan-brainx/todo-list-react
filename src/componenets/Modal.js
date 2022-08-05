@@ -52,7 +52,7 @@ function Modal(props) {
       {props.modalType === 'edit' && (
         <div>
           <h2>Edit Item</h2>
-          <TodoForm onSave={todoFormUpdateHandler} />
+          <TodoForm onSave={todoFormUpdateHandler} todoItem={props.todoItem} />
         </div>
       )}
     </div>

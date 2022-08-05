@@ -1,24 +1,20 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 
 const TodoForm = (props) => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-
-  const nameInputHandler = (e) => {
-    setName(e.target.value);
-  };
-  const descriptionInputHandler = (e) => {
-    setDescription(e.target.value);
-  };
+  const nameInputRef = useRef();
+  const descriptionInputRef = useRef();
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
+    const name = nameInputRef.current.value;
+    const description = descriptionInputRef.current.value;
     props.onSave({
       name,
       description,
     });
-    setName('');
-    setDescription('');
+
+    nameInputRef.current.value = '';
+    descriptionInputRef.current.value = '';
   };
 
   return (
@@ -26,14 +22,19 @@ const TodoForm = (props) => {
       <h2>This is form</h2>
       <form onSubmit={formSubmitHandler}>
         <label>Name</label>
-        <input type="text" value={name} id="name" onChange={nameInputHandler} />
+        <input
+          type="text"
+          id="name"
+          defaultValue={props.todoItem.name}
+          ref={nameInputRef}
+        />
         <br />
         <label>Description</label>
         <input
           type="text"
-          value={description}
           id="description"
-          onChange={descriptionInputHandler}
+          defaultValue={props.todoItem.description}
+          ref={descriptionInputRef}
         />
         <br />
         <button type="submit">Add</button>

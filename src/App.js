@@ -30,8 +30,6 @@ function App() {
     fetch('/tasks', requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log('success');
-
         isTodoListUpdated
           ? setIsTodoListUpdated(false)
           : setIsTodoListUpdated(true);
