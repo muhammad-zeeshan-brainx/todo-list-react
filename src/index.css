@@ -12,6 +12,13 @@
   background-color: bisque;
 }
 
+.jumbotron {
+  border: 5px solid black;
+  border-radius: 10px;
+  background-color: #e9ecef;
+  padding: 10px;
+}
+
 .backdrop-custom {
   position: fixed;
   z-index: 1;

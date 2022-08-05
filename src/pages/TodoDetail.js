@@ -19,18 +19,19 @@ const TodoDetail = (props) => {
   }, [url]);
 
   return (
-    <div>
-      <h3>Todo Detail</h3>
+    <section className="jumbotron text-center">
+      <div className="container">
+        {item ? (
+          <div>
+            <h1 className="jumbotron-heading">{item.name}</h1>
 
-      {item ? (
-        <div>
-          <p>{item.name}</p>
-          <p>{item.description}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+            <p className="lead text-muted mb-0">{item.description}</p>
+          </div>
+        ) : (
+          <p className="lead text-muted mb-0">Loading...</p>
+        )}
+      </div>
+    </section>
   );
 };
 
