@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import AllTodos from './pages/AllTodos';
@@ -37,7 +37,7 @@ function App() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Routes>
         <Route path="todos">
           <Route
@@ -57,7 +57,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -1,5 +1,7 @@
+import React from 'react';
 import TodoForm from '../componenets/TodoForm';
 import Todo from '../componenets/Todo';
+import '../index.css';
 
 const AllTodos = (props) => {
   const todoItem = {
@@ -7,11 +9,12 @@ const AllTodos = (props) => {
     description: '',
   };
   return (
-    <div>
-      <h1>Todo List</h1>
+    <React.Fragment>
+      <h1 className="title display-2">Todo List</h1>
+
       <TodoForm onSave={props.todoFormSubmitHandler} todoItem={todoItem} />
 
-      <ul>
+      <ul className="todo-list">
         {props.todosList.length > 0
           ? props.todosList.map((item) => (
               <Todo
@@ -21,9 +24,9 @@ const AllTodos = (props) => {
                 isTodoListUpdated={props.isTodoListUpdated}
               />
             ))
-          : null}
+          : 'Loading...'}
       </ul>
-    </div>
+    </React.Fragment>
   );
 };
 

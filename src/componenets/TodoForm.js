@@ -18,26 +18,41 @@ const TodoForm = (props) => {
   };
 
   return (
-    <div>
-      <h2>This is form</h2>
+    <div className="input-box">
       <form onSubmit={formSubmitHandler}>
-        <label>Name</label>
-        <input
-          type="text"
-          id="name"
-          defaultValue={props.todoItem.name}
-          ref={nameInputRef}
-        />
-        <br />
-        <label>Description</label>
-        <input
-          type="text"
-          id="description"
-          defaultValue={props.todoItem.description}
-          ref={descriptionInputRef}
-        />
-        <br />
-        <button type="submit">Add</button>
+        <div className="mb3">
+          <div className="form-input-label">
+            <label>Name</label>
+          </div>
+
+          <input
+            type="text"
+            id="name"
+            className="form-control form-input"
+            defaultValue={props.todoItem.name}
+            ref={nameInputRef}
+          />
+        </div>
+
+        <div className="mb3">
+          <div className="form-input-label">
+            <label>Description</label>
+          </div>
+
+          <input
+            type="text"
+            id="description"
+            className="form-control form-input"
+            defaultValue={props.todoItem.description}
+            ref={descriptionInputRef}
+          />
+        </div>
+
+        <div className="form-btn">
+          <button type="submit" className="add-btn btn btn-success">
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );

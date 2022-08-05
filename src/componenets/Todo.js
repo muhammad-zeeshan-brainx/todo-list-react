@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Modal from './Modal';
 import Backdrop from './Backdrop';
 import { Link } from 'react-router-dom';
@@ -19,26 +19,24 @@ function Todo(props) {
   }
 
   return (
-    <div className="card">
-      <li key={props.todoItem.id}>
-        <Link to={`${props.todoItem.id}`}>{props.todoItem.name}</Link>
+    <React.Fragment>
+      <li key={props.todoItem.id} className="list-item">
+        <span className="list-text">
+          <Link to={`${props.todoItem.id}`}>{props.todoItem.name}</Link>
+        </span>
 
-        <button
-          className="btn"
+        <i
+          className="fa-solid fa-trash-can delete-icon"
           onClick={() => {
             deleteHandler();
           }}
-        >
-          Delete
-        </button>
-        <button
-          className="btn"
+        ></i>
+        <i
+          className="fa-solid fa-pen-to-square edit-icon"
           onClick={() => {
             editHandler();
           }}
-        >
-          Edit
-        </button>
+        ></i>
       </li>
 
       {modal.isOpen ? (
@@ -53,7 +51,7 @@ function Todo(props) {
         />
       ) : null}
       {modal.isOpen ? <Backdrop onCancel={closeModalHandler} /> : null}
-    </div>
+    </React.Fragment>
   );
 }
 

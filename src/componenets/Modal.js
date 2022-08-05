@@ -37,14 +37,20 @@ function Modal(props) {
   };
 
   return (
-    <div className="modal">
+    <div className="modal-custom">
       {props.modalType === 'delete' && (
         <div>
-          Are you sure?
-          <button className="confirm-btn" onClick={confirmHandler}>
+          <h4 className="delete-confirmation">Are you sure?</h4>
+          <button
+            className="delete-modal-btn btn btn-primary"
+            onClick={confirmHandler}
+          >
             Confirm
           </button>
-          <button className="confirm-btn" onClick={cancelHandler}>
+          <button
+            className="delete-modal-btn btn btn-danger"
+            onClick={cancelHandler}
+          >
             Cancel
           </button>
         </div>

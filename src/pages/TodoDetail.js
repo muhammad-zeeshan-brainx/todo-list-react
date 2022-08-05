@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import '../index.css';
 
 const TodoDetail = (props) => {
   const params = useParams();
